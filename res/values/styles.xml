@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!--Notification-->
+	<style name="NotificationText">
+		<item name="android:textColor">?android:attr/textColorPrimary</item>
+	</style>
+	<style name="NotificationTitle">
+		<item name="android:textColor">?android:attr/textColorPrimary</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+
+	<style name="wrap_content">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+	<style name="List">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">fill_parent</item>
+		<item name="android:background">@android:color/transparent</item>
+		<item name="android:divider">@android:color/transparent</item>
+		<item name="android:dividerHeight">0dp</item>
+	</style>
+
+</resources>
