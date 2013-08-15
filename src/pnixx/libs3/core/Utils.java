@@ -1,5 +1,6 @@
 package pnixx.libs3.core;
 
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
@@ -29,17 +30,38 @@ public class Utils {
 			}
 			return hexString.toString();
 
-		} catch (NoSuchAlgorithmException e) {
+		} catch( NoSuchAlgorithmException e ) {
 			e.printStackTrace();
 		}
 		return "";
 	}
 
-	public static String extractPattern(String string, String pattern){
+	public static String extractPattern(String string, String pattern) {
 		Pattern p = Pattern.compile(pattern);
 		Matcher m = p.matcher(string);
-		if (!m.find())
+		if( !m.find() ) {
 			return null;
+		}
 		return m.toMatchResult().group(1);
+	}
+
+	public static String sha1Hash(String toHash) {
+		String hash = null;
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-1");
+			byte[] bytes = toHash.getBytes("UTF-8");
+			digest.update(bytes, 0, bytes.length);
+			bytes = digest.digest();
+			StringBuilder sb = new StringBuilder();
+			for( byte b : bytes ) {
+				sb.append(String.format("%02X", b));
+			}
+			hash = sb.toString();
+		} catch( NoSuchAlgorithmException e ) {
+			e.printStackTrace();
+		} catch( UnsupportedEncodingException e ) {
+			e.printStackTrace();
+		}
+		return hash;
 	}
 }
