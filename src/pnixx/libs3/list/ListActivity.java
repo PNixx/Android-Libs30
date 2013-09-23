@@ -26,6 +26,7 @@ public abstract class ListActivity<Row> extends Activity implements AdapterView.
 	@Override
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
+		setContentView(R.layout.list);
 
 		//Получаем объекты
 		list = (ListView) findViewById(R.id.list);
