@@ -30,17 +30,18 @@ public class Utils {
 			}
 			return hexString.toString();
 
-		} catch (NoSuchAlgorithmException e) {
+		} catch( NoSuchAlgorithmException e ) {
 			e.printStackTrace();
 		}
 		return "";
 	}
 
-	public static String extractPattern(String string, String pattern){
+	public static String extractPattern(String string, String pattern) {
 		Pattern p = Pattern.compile(pattern);
 		Matcher m = p.matcher(string);
-		if (!m.find())
+		if( !m.find() ) {
 			return null;
+		}
 		return m.toMatchResult().group(1);
 	}
 
