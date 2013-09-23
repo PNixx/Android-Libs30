@@ -38,6 +38,7 @@ public class Ajax {
 
 		//Добавляем заголовок ajax
 		client.addHeader("X-Requested-With", "XMLHttpRequest");
+		client.setTimeout(600000);
 
 		//Инициализируем работу с куками
 		PersistentCookieStore cookieStore = new PersistentCookieStore(context);
