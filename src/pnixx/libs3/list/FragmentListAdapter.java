@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import org.json.JSONException;
 import pnixx.libs3.R;
 
 import java.util.ArrayList;
@@ -28,6 +27,7 @@ public abstract class FragmentListAdapter<A extends Activity, Row> extends Fragm
 	protected AbstractAdapter adapter;
 	protected View progress;
 	protected View footer_loader;
+	protected int page = 1;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -75,7 +75,7 @@ public abstract class FragmentListAdapter<A extends Activity, Row> extends Fragm
 	}
 
 	//Получаем данные страницы
-	protected abstract void getPage() throws JSONException;
+	protected abstract void getPage();
 
 	//Скрыть прогресс бар
 	protected void progressHide() {
@@ -103,5 +103,20 @@ public abstract class FragmentListAdapter<A extends Activity, Row> extends Fragm
 	//Удаление футера
 	protected void removeFooterLoader() {
 		list.removeFooterView(footer_loader);
+	}
+
+	//Устанавливаем коллбек на прокрутку страницы
+	protected void setCallbackOnEndPageTrack() {
+		if( isActive ) {
+			adapter.setOnEndPage(new AbstractAdapter.OnEndPage() {
+				@Override
+				public void run() {
+					super.run();
+					page += 1;
+					addFooterLoader();
+					getPage();
+				}
+			});
+		}
 	}
 }

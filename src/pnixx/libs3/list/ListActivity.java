@@ -23,6 +23,7 @@ public abstract class ListActivity<Row> extends Activity implements AdapterView.
 	protected AbstractAdapter adapter;
 	protected View progress;
 	protected View footer_loader;
+	protected int page = 1;
 
 	@Override
 	public void onCreate(Bundle bundle) {
@@ -60,6 +61,9 @@ public abstract class ListActivity<Row> extends Activity implements AdapterView.
 		isActive = true;
 	}
 
+	//Получаем данные страницы
+	protected abstract void getPage();
+
 	//Скрыть прогресс бар
 	protected void progressHide() {
 		progress.setVisibility(View.GONE);
@@ -86,5 +90,20 @@ public abstract class ListActivity<Row> extends Activity implements AdapterView.
 	//Удаление футера
 	protected void removeFooterLoader() {
 		list.removeFooterView(footer_loader);
+	}
+
+	//Устанавливаем коллбек на прокрутку страницы
+	protected void setCallbackOnEndPageTrack() {
+		if( isActive ) {
+			adapter.setOnEndPage(new AbstractAdapter.OnEndPage() {
+				@Override
+				public void run() {
+					super.run();
+					page += 1;
+					addFooterLoader();
+					getPage();
+				}
+			});
+		}
 	}
 }
