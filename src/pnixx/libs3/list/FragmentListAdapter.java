@@ -27,6 +27,7 @@ public abstract class FragmentListAdapter<A extends Activity, Row> extends Fragm
 	protected PageScrolling pageScrolling;
 	protected AbstractAdapter adapter;
 	protected View progress;
+	protected View footer_loader;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -51,6 +52,10 @@ public abstract class FragmentListAdapter<A extends Activity, Row> extends Fragm
 		super.onActivityCreated(savedInstanceState);
 		isActive = true;
 		activity = (A) getActivity();
+
+		//Получаем шаблон для загрузчика
+		View view_footer = activity.getLayoutInflater().inflate(R.layout.footer_loader, list, false);
+		footer_loader = view_footer.findViewById(R.id.footer_layout);
 
 		//Биндим скроллинг
 		pageScrolling = new PageScrolling(activity);
@@ -79,12 +84,24 @@ public abstract class FragmentListAdapter<A extends Activity, Row> extends Fragm
 
 	//Установка адаптера
 	protected void setAdapter(AbstractAdapter adapter) {
+		list.addFooterView(footer_loader);
 		pageScrolling.setAdapter(adapter);
 		list.setAdapter(adapter);
+		list.removeFooterView(footer_loader);
 	}
 
 	//Получение списка
 	protected ListView getListView() {
 		return list;
+	}
+
+	//Добавление футера
+	protected void addFooterLoader() {
+		list.addFooterView(footer_loader);
+	}
+
+	//Удаление футера
+	protected void removeFooterLoader() {
+		list.removeFooterView(footer_loader);
 	}
 }
