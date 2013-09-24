@@ -22,6 +22,7 @@ public abstract class ListActivity<Row> extends Activity implements AdapterView.
 	protected PageScrolling pageScrolling;
 	protected AbstractAdapter adapter;
 	protected View progress;
+	protected View footer_loader;
 
 	@Override
 	public void onCreate(Bundle bundle) {
@@ -31,6 +32,9 @@ public abstract class ListActivity<Row> extends Activity implements AdapterView.
 		//Получаем объекты
 		list = (ListView) findViewById(R.id.list);
 		progress = findViewById(R.id.progress);
+
+		//Получаем шаблон для загрузчика
+		footer_loader = getLayoutInflater().inflate(R.layout.footer_loader, null);
 
 		//Биндим клик
 		list.setOnItemClickListener(this);
@@ -69,5 +73,15 @@ public abstract class ListActivity<Row> extends Activity implements AdapterView.
 	//Получение списка
 	protected ListView getListView() {
 		return list;
+	}
+
+	//Добавление футера
+	protected void addFooterLoader() {
+		list.addFooterView(footer_loader);
+	}
+
+	//Удаление футера
+	protected void removeFooterLoader() {
+		list.removeFooterView(footer_loader);
 	}
 }
