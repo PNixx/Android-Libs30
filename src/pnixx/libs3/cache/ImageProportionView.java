@@ -3,7 +3,6 @@ package pnixx.libs3.cache;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
-import pnixx.libs3.core.Log;
 
 /**
  * Отображает изображение в ленте, увеличивая пропорционально изображение по ширине и высоте
@@ -49,7 +48,6 @@ public class ImageProportionView extends ImageCacheView {
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		Log.d("mw: " + getMeasuredWidth() + ", iw: " + getWidth());
 
 		//Получаем ширину и высоту ImageView
 		final int height = getMeasuredHeight();
