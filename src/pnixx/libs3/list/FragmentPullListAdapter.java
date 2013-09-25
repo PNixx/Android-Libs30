@@ -52,8 +52,7 @@ public abstract class FragmentPullListAdapter<A extends Activity, Row> extends F
 		activity = (A) getActivity();
 
 		//Получаем шаблон для загрузчика
-		View view_footer = activity.getLayoutInflater().inflate(R.layout.footer_loader, list, false);
-		footer_loader = view_footer.findViewById(R.id.footer_layout);
+		footer_loader = activity.getLayoutInflater().inflate(R.layout.footer_loader, null);
 
 		//Биндим скроллинг
 		pageScrolling = new PageScrolling(activity);
