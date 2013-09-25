@@ -82,8 +82,10 @@ public abstract class FragmentPullListAdapter<A extends Activity, Row> extends F
 
 	//Установка адаптера
 	protected void setAdapter(AbstractAdapter adapter) {
+		addFooterLoader();
 		pageScrolling.setAdapter(adapter);
 		list.setAdapter(adapter);
+		removeFooterLoader();
 	}
 
 	//Получение списка
