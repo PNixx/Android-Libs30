@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import org.json.JSONException;
 import pnixx.libs3.R;
 
 import java.util.ArrayList;
@@ -28,6 +27,8 @@ public abstract class FragmentPullListAdapter<A extends Activity, Row> extends F
 	protected PageScrolling pageScrolling;
 	protected AbstractAdapter adapter;
 	protected View progress;
+	protected View footer_loader;
+	protected int page = 1;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -50,6 +51,10 @@ public abstract class FragmentPullListAdapter<A extends Activity, Row> extends F
 		isActive = true;
 		activity = (A) getActivity();
 
+		//Получаем шаблон для загрузчика
+		View view_footer = activity.getLayoutInflater().inflate(R.layout.footer_loader, list, false);
+		footer_loader = view_footer.findViewById(R.id.footer_layout);
+
 		//Биндим скроллинг
 		pageScrolling = new PageScrolling(activity);
 		list.setOnScrollListener(pageScrolling);
@@ -68,7 +73,7 @@ public abstract class FragmentPullListAdapter<A extends Activity, Row> extends F
 	}
 
 	//Получаем данные страницы
-	protected abstract void getPage() throws JSONException;
+	protected abstract void getPage();
 
 	//Скрыть прогресс бар
 	protected void progressHide() {
@@ -84,5 +89,30 @@ public abstract class FragmentPullListAdapter<A extends Activity, Row> extends F
 	//Получение списка
 	protected ListView getListView() {
 		return list.getRefreshableView();
+	}
+
+	//Добавление футера
+	protected void addFooterLoader() {
+		getListView().addFooterView(footer_loader);
+	}
+
+	//Удаление футера
+	protected void removeFooterLoader() {
+		getListView().removeFooterView(footer_loader);
+	}
+
+	//Устанавливаем коллбек на прокрутку страницы
+	protected void setCallbackOnEndPageTrack() {
+		if( isActive ) {
+			adapter.setOnEndPage(new AbstractAdapter.OnEndPage() {
+				@Override
+				public void run() {
+					super.run();
+					page += 1;
+					addFooterLoader();
+					getPage();
+				}
+			});
+		}
 	}
 }
