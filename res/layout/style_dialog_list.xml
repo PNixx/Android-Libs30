@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:orientation="vertical"
+		>
+	<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+		<TextView
+				style="@style/Dialog.Title"
+				android:text="@string/dialog_title"
+				android:id="@+id/dialog_title"/>
+	</LinearLayout>
+	<ListView android:id="@+id/list" style="@style/Dialog.List"/>
+	<ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content"  android:id="@+id/progress" android:layout_gravity="center_horizontal" android:visibility="gone" />
+</LinearLayout>

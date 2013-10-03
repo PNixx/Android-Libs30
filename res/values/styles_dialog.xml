@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="StyleDialog" parent="android:Theme.Dialog">
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
+	</style>
+
+	<style name="Dialog">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">fill_parent</item>
+	</style>
+	<style name="Dialog.Image">
+		<item name="android:layout_width">50dp</item>
+		<item name="android:layout_height">50dp</item>
+		<item name="android:paddingLeft">10dp</item>
+	</style>
+	<style name="Dialog.List">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:background">@android:color/white</item>
+		<item name="android:divider">@android:color/transparent</item>
+		<item name="android:dividerHeight">0dp</item>
+	</style>
+	<style name="Dialog.Title">
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:background">#2980B9</item>
+		<item name="android:textColor">#ecf0f1</item>
+		<item name="android:padding">10dp</item>
+		<item name="android:textSize">22dp</item>
+	</style>
+	<style name="Dialog.Row">
+		<item name="android:background">@drawable/bg_dialog_row</item>
+		<item name="android:orientation">horizontal</item>
+	</style>
+	<style name="Dialog.RowText">
+		<item name="android:textColor">#ecf0f1</item>
+		<item name="android:textSize">20dp</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:padding">10dp</item>
+	</style>
+</resources>
