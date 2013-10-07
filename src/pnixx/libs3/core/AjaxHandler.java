@@ -26,12 +26,19 @@ public class AjaxHandler extends JsonHttpResponseHandler {
 
 	public void onFailure(Throwable e, JSONObject errorResponse) {
 		Log.e(TAG + " onFailure *" + e.getCause() + "* JSONObject: " + errorResponse);
+		onError();
 	}
 	public void onFailure(Throwable e, JSONArray errorResponse) {
 		Log.e(TAG + " onFailure *" + e.getCause() + "* JSONArray: " + errorResponse);
+		onError();
 	}
 	public void onFailure(Throwable e, String errorResponse) {
 		Log.e(TAG + " onFailure *" + e.getCause() + "* String: " + errorResponse);
+		onError();
+	}
+
+	public void onError() {
+
 	}
 
 	@Override
