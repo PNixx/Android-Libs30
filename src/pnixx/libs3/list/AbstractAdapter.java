@@ -51,6 +51,7 @@ public abstract class AbstractAdapter<Row, Holder extends AbstractHolder<Row>> e
 //		Log.d("position: " + position + ", onEndPage: " + onEndPage + ", size: " + objects.size());
 		if( position >= objects.size() - 1 && onEndPage != null ) {
 			onEndPage.run();
+			onEndPage = null;
 		}
 
 		View row = convertView;
