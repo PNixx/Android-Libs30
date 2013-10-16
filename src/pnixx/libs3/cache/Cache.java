@@ -83,12 +83,12 @@ public class Cache {
 	 */
 	public static void addBitmap(String key, Bitmap bitmap) {
 		if( getBitmap(key) == null ) {
-			Log.d(instance.TAG, "Add key: " + key);
+			Log.v(instance.TAG, "Add key: " + key);
 			instance.mBitmapCache.put(key, bitmap);
 		}
 
 		if( !instance.mDiskCache.exists(key) ) {
-			Log.d(instance.TAG, "Add disk cache: " + key);
+			Log.v(instance.TAG, "Add disk cache: " + key);
 			instance.mDiskCache.writeFile(key, bitmap);
 		}
 	}

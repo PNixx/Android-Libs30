@@ -56,8 +56,6 @@ public abstract class SupportFragmentListAdapter<A extends FragmentActivity, Row
 		//Получаем шаблон для загрузчика
 		View view_footer = activity.getLayoutInflater().inflate(R.layout.footer_loader, list, false);
 		footer_loader = view_footer.findViewById(R.id.footer_layout);
-		list.addFooterView(footer_loader);
-		removeFooterLoader();
 
 		//Биндим скроллинг
 		pageScrolling = new PageScrolling(activity);
@@ -115,12 +113,12 @@ public abstract class SupportFragmentListAdapter<A extends FragmentActivity, Row
 
 	//Добавление футера
 	protected void addFooterLoader() {
-		footer_loader.setVisibility(View.VISIBLE);
+		list.addFooterView(footer_loader);
 	}
 
 	//Удаление футера
 	protected void removeFooterLoader() {
-		footer_loader.setVisibility(View.GONE);
+		list.removeFooterView(footer_loader);
 	}
 
 	//Устанавливаем коллбек на прокрутку страницы

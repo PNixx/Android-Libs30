@@ -57,6 +57,11 @@ public abstract class SupportFragmentPullListAdapter<A extends FragmentActivity,
 		//Биндим скроллинг
 		pageScrolling = new PageScrolling(activity);
 		list.setOnScrollListener(pageScrolling);
+
+		//Восстановление состояния
+		if( savedInstanceState != null ) {
+			onRestoreInstanceState(savedInstanceState);
+		}
 	}
 
 	@Override
@@ -73,6 +78,17 @@ public abstract class SupportFragmentPullListAdapter<A extends FragmentActivity,
 
 	//Получаем данные страницы
 	protected abstract void getPage();
+
+	@Override
+	public void onSaveInstanceState(Bundle bundle) {
+		bundle.putInt("page", page);
+		super.onSaveInstanceState(bundle);
+	}
+
+	//Восстановление данных
+	public void onRestoreInstanceState(Bundle bundle) {
+		page = bundle.getInt("page");
+	}
 
 	//Скрыть прогресс бар
 	protected void progressHide() {

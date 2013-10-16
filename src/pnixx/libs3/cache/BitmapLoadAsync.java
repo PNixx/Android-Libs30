@@ -50,7 +50,6 @@ public class BitmapLoadAsync extends AsyncTask<String, Void, Bitmap> {
 
 		//Если изображение не найдено
 		if( bitmap == null ) {
-			Log.w("loading: " + url);
 			HttpURLConnection conn = null;
 			BufferedInputStream buf_stream = null;
 			try {
