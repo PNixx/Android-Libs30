@@ -17,17 +17,15 @@ import java.util.ArrayList;
  * Date: 22.03.13
  * Time: 16:31
  */
-public abstract class SupportFragmentListAdapter<A extends FragmentActivity, Row> extends Fragment implements AdapterView.OnItemClickListener {
+public abstract class SupportFragmentSeparatedListAdapter<A extends FragmentActivity, Row> extends Fragment implements AdapterView.OnItemClickListener {
 
 	protected ListView list;
 	protected A activity;
 	protected boolean isActive;
 	protected ArrayList<Row> rows;
 	protected PageScrolling pageScrolling;
-	protected AbstractAdapter adapter;
+	protected SeparatedListAdapter adapter;
 	protected View progress;
-	protected View footer_loader;
-	protected int page = 1;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -53,31 +51,9 @@ public abstract class SupportFragmentListAdapter<A extends FragmentActivity, Row
 		isActive = true;
 		activity = (A) getActivity();
 
-		//Получаем шаблон для загрузчика
-		View view_footer = activity.getLayoutInflater().inflate(R.layout.footer_loader, list, false);
-		footer_loader = view_footer.findViewById(R.id.footer_layout);
-		list.addFooterView(footer_loader);
-		removeFooterLoader();
-
 		//Биндим скроллинг
 		pageScrolling = new PageScrolling(activity);
 		list.setOnScrollListener(pageScrolling);
-
-		//Восстановление состояния
-		if( savedInstanceState != null ) {
-			onRestoreInstanceState(savedInstanceState);
-		}
-	}
-
-	@Override
-	public void onSaveInstanceState(Bundle bundle) {
-		bundle.putInt("page", page);
-		super.onSaveInstanceState(bundle);
-	}
-
-	//Восстановление данных
-	public void onRestoreInstanceState(Bundle bundle) {
-		page = bundle.getInt("page");
 	}
 
 	@Override
@@ -101,7 +77,7 @@ public abstract class SupportFragmentListAdapter<A extends FragmentActivity, Row
 	}
 
 	//Установка адаптера
-	protected void setAdapter(AbstractAdapter adapter) {
+	protected void setAdapter(SeparatedListAdapter adapter) {
 		if( isActive && isAdded() ) {
 			pageScrolling.setAdapter(adapter);
 			list.setAdapter(adapter);
@@ -111,30 +87,5 @@ public abstract class SupportFragmentListAdapter<A extends FragmentActivity, Row
 	//Получение списка
 	protected ListView getListView() {
 		return list;
-	}
-
-	//Добавление футера
-	protected void addFooterLoader() {
-		footer_loader.setVisibility(View.VISIBLE);
-	}
-
-	//Удаление футера
-	protected void removeFooterLoader() {
-		footer_loader.setVisibility(View.GONE);
-	}
-
-	//Устанавливаем коллбек на прокрутку страницы
-	protected void setCallbackOnEndPageTrack() {
-		if( isActive ) {
-			adapter.setOnEndPage(new AbstractAdapter.OnEndPage() {
-				@Override
-				public void run() {
-					super.run();
-					page += 1;
-					addFooterLoader();
-					getPage();
-				}
-			});
-		}
 	}
 }
