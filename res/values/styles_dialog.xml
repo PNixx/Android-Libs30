@@ -4,6 +4,9 @@
 		<item name="android:windowNoTitle">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 	</style>
+	<color name="DialogRowBackground">@android:color/black</color>
+	<color name="DialogRowBackgroundPressed">#2C3E50</color>
+	<color name="DialogRowBackgroundSelected">#eeeeee</color>
 
 	<style name="Dialog">
 		<item name="android:layout_width">fill_parent</item>

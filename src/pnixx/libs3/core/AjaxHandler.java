@@ -38,7 +38,7 @@ public class AjaxHandler extends JsonHttpResponseHandler {
 	}
 
 	public void onError(String r) {
-		Log.e(TAG + " onError: " + r);
+
 	}
 
 	@Override
