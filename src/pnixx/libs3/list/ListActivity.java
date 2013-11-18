@@ -23,6 +23,9 @@ public abstract class ListActivity<Row> extends Activity implements AdapterView.
 	protected AbstractAdapter adapter;
 	protected View progress;
 	protected View footer_loader;
+	protected View undo_layout;
+	protected View undo;
+	protected Row undo_row;
 	protected int page = 1;
 
 	@Override
@@ -33,6 +36,8 @@ public abstract class ListActivity<Row> extends Activity implements AdapterView.
 		//Получаем объекты
 		list = (ListView) findViewById(R.id.list);
 		progress = findViewById(R.id.progress);
+		undo_layout = findViewById(R.id.undo_layout);
+		undo = findViewById(R.id.undo);
 
 		//Получаем шаблон для загрузчика
 		View view_footer = getLayoutInflater().inflate(R.layout.footer_loader, list, false);
@@ -40,6 +45,12 @@ public abstract class ListActivity<Row> extends Activity implements AdapterView.
 
 		//Биндим клик
 		list.setOnItemClickListener(this);
+		undo.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				undoClick();
+			}
+		});
 
 		//Устанавливаем параметры для списка
 		list.setDividerHeight(0);
@@ -106,4 +117,21 @@ public abstract class ListActivity<Row> extends Activity implements AdapterView.
 			});
 		}
 	}
+
+	//Показывает кнопку возврата
+	public void removeRow(Row row) {
+		undo_row = row;
+		rows.remove(row);
+		adapter.notifyDataSetChanged();
+		undo_layout.setVisibility(View.VISIBLE);
+	}
+
+	//Нажали на кнопку возврата
+	private void undoClick() {
+		undo_layout.setVisibility(View.GONE);
+		onUndoRow(undo_row);
+	}
+
+	//Срабатывает при нажатии на кнопку возврата
+	public abstract void onUndoRow(Row row);
 }

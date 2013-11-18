@@ -19,6 +19,8 @@
 		<item name="android:background">@android:color/transparent</item>
 		<item name="android:divider">@android:color/transparent</item>
 		<item name="android:dividerHeight">0dp</item>
+		<item name="android:layout_alignParentTop">true</item>
+		<item name="android:layout_above">@+id/undo_layout</item>
 	</style>
 	<style name="ListLayout">
 		<item name="android:layout_width">fill_parent</item>
@@ -30,6 +32,25 @@
 		<item name="android:paddingTop">2dp</item>
 		<item name="android:paddingBottom">2dp</item>
 		<item name="android:paddingLeft">5dp</item>
+	</style>
+	<style name="ListUndoLayout">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:background">#989898</item>
+		<item name="android:padding">10dp</item>
+		<item name="android:layout_alignParentBottom">true</item>
+		<item name="android:visibility">gone</item>
+	</style>
+	<style name="ListUndoText" parent="wrap_content">
+		<item name="android:layout_alignParentLeft">true</item>
+		<item name="android:layout_toLeftOf">@+id/undo</item>
+		<item name="android:textColor">@android:color/white</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:layout_centerVertical">true</item>
+	</style>
+	<style name="ListUndoButton" parent="wrap_content">
+		<item name="android:layout_alignParentRight">true</item>
+		<item name="android:orientation">horizontal</item>
 	</style>
 
 </resources>

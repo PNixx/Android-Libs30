@@ -4,4 +4,6 @@
 	<string name="NotInternet">You need to connect to the Internet!</string>
 	<string name="dialog_title">Choose a section</string>
 	<string name="footer_loading">loading…</string>
+	<string name="list_undo_remove">Removed</string>
+	<string name="list_undo">undo</string>
 </resources>
