@@ -133,5 +133,8 @@ public abstract class ListActivity<Row> extends Activity implements AdapterView.
 	}
 
 	//Срабатывает при нажатии на кнопку возврата
-	public void onUndoRow(Row row) {}
+	public void onUndoRow(Row row) {
+		rows.add(row);
+		adapter.notifyDataSetChanged();
+	}
 }
