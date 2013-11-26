@@ -276,7 +276,7 @@ public class Cache {
 						}
 
 						//Добавляем прослушку
-						mTasksHandler.get(imageKey).add(new BitmapLoadListener(imageView, image_url, true));
+						mTasksHandler.get(imageKey).add(new BitmapLoadListener(imageView, image_url, false));
 					}
 				}
 			}

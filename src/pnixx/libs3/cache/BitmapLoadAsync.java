@@ -118,7 +118,7 @@ public class BitmapLoadAsync extends AsyncTask<String, Void, Bitmap> {
 			if( imageView != null && (imageView.url != null && imageView.url.equals(url)) ) {
 
 				//Если нужна анимация
-				if( is_animate ) {
+				if( is_animate && !imageView.is_loaded ) {
 					//Создаём анимацию
 					AlphaAnimation animate = new AlphaAnimation(0, 1);
 					animate.setDuration(300);
