@@ -20,7 +20,7 @@
 		<item name="android:divider">@android:color/transparent</item>
 		<item name="android:dividerHeight">0dp</item>
 		<item name="android:layout_alignParentTop">true</item>
-		<item name="android:layout_above">@+id/undo_layout</item>
+		<item name="android:layout_above">@id/undo_layout</item>
 	</style>
 	<style name="ListLayout">
 		<item name="android:layout_width">fill_parent</item>
@@ -43,7 +43,7 @@
 	</style>
 	<style name="ListUndoText" parent="wrap_content">
 		<item name="android:layout_alignParentLeft">true</item>
-		<item name="android:layout_toLeftOf">@+id/undo</item>
+		<item name="android:layout_toLeftOf">@id/undo</item>
 		<item name="android:textColor">@android:color/white</item>
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:layout_centerVertical">true</item>

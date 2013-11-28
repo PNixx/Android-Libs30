@@ -250,7 +250,7 @@ public class Cache {
 				}
 
 				//Пытаемся получить изображение
-				if( !isScrolling && WindowsParam.internetIsAvailable() ) {
+				if( !isScrolling && WindowsParam.internetIsAvailable(false) ) {
 
 					//Если в текущий момент ссылка не загружается
 					if( !mCurrentTasks.contains(imageKey) ) {
