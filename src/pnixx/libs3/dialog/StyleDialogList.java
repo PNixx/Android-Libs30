@@ -109,7 +109,7 @@ public class StyleDialogList extends Dialog {
 				if( clickListener != null ) {
 					clickListener.onItemClick(parent, view, position, id);
 				}
-				cancel();
+				dismiss();
 			}
 		});
 		list.setDividerHeight(0);
