@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<item type="id" name="loader" />
+	<item type="id" name="footer_layout" />
+	<item type="id" name="list" />
+	<item type="id" name="progress" />
+	<item type="id" name="list_header_title" />
 	<item type="id" name="undo_layout" />
 	<item type="id" name="undo" />
+	<item type="id" name="notification_download_layout_image" />
+	<item type="id" name="notification_download_layout_title" />
+	<item type="id" name="notification_download_layout_progressbar" />
+	<item type="id" name="dialog_title" />
+	<item type="id" name="image" />
+	<item type="id" name="title" />
 </resources>

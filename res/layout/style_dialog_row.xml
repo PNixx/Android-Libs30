@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout	xmlns:android="http://schemas.android.com/apk/res/android"
 		style="@style/Dialog.Row">
-	<pnixx.libs3.cache.ImageCacheView android:id="@+id/image" style="@style/Dialog.Image" />
-	<TextView android:id="@+id/title" style="@style/Dialog.RowText" />
+	<pnixx.libs3.cache.ImageCacheView android:id="@id/image" style="@style/Dialog.Image" />
+	<TextView android:id="@id/title" style="@style/Dialog.RowText" />
 </LinearLayout>

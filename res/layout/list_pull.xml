@@ -2,6 +2,6 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 							style="@style/ListLayout">
-	<com.handmark.pulltorefresh.library.PullToRefreshListView style="@style/List" android:id="@+id/list" />
-	<ProgressBar style="@style/wrap_content" android:layout_centerInParent="true" android:id="@+id/progress" />
+	<com.handmark.pulltorefresh.library.PullToRefreshListView style="@style/List" android:id="@id/list" />
+	<ProgressBar style="@style/wrap_content" android:layout_centerInParent="true" android:id="@id/progress" />
 </RelativeLayout>

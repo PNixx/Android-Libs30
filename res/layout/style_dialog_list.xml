@@ -12,8 +12,8 @@
 		<TextView
 				style="@style/Dialog.Title"
 				android:text="@string/dialog_title"
-				android:id="@+id/dialog_title"/>
+				android:id="@id/dialog_title"/>
 	</LinearLayout>
-	<ListView android:id="@+id/list" style="@style/Dialog.List"/>
-	<ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content"  android:id="@+id/progress" android:layout_gravity="center_horizontal" android:visibility="gone" />
+	<ListView android:id="@id/list" style="@style/Dialog.List"/>
+	<ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content"  android:id="@id/progress" android:layout_gravity="center_horizontal" android:visibility="gone" />
 </LinearLayout>

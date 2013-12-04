@@ -2,15 +2,15 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 								style="@style/ListLayout">
-	<ListView style="@style/List" android:id="@+id/list" />
-	<RelativeLayout style="@style/ListUndoLayout" android:id="@+id/undo_layout">
+	<ListView style="@style/List" android:id="@id/list" />
+	<RelativeLayout style="@style/ListUndoLayout" android:id="@id/undo_layout">
 		<TextView style="@style/ListUndoText" android:text="@string/list_undo_remove" />
-		<LinearLayout style="@style/ListUndoButton" android:id="@+id/undo">
+		<LinearLayout style="@style/ListUndoButton" android:id="@id/undo">
 			<ImageView style="@style/wrap_content"
 								 android:layout_marginRight="5dp"
 								 android:src="@drawable/ic_button_undo" />
 			<TextView style="@style/ListUndoText" android:text="@string/list_undo" />
 		</LinearLayout>
 	</RelativeLayout>
-	<ProgressBar style="@style/wrap_content" android:layout_centerInParent="true" android:id="@+id/progress" />
+	<ProgressBar style="@style/wrap_content" android:layout_centerInParent="true" android:id="@id/progress" />
 </RelativeLayout>
