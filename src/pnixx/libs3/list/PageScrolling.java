@@ -36,7 +36,9 @@ public class PageScrolling implements AbsListView.OnScrollListener {
 			mIsScrolling = true;
 		} else {
 			mIsScrolling = false;
-			adapter.notifyDataSetChanged();
+			if( adapter != null ) {
+				adapter.notifyDataSetChanged();
+			}
 		}
 	}
 
