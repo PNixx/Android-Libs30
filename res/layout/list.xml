@@ -12,5 +12,7 @@
 			<TextView style="@style/ListUndoText" android:text="@string/list_undo" />
 		</LinearLayout>
 	</RelativeLayout>
+
+	<Button style="@style/ButtonRefresh" android:id="@+id/refresh" />
 	<ProgressBar style="@style/wrap_content" android:layout_centerInParent="true" android:id="@id/progress" />
 </RelativeLayout>

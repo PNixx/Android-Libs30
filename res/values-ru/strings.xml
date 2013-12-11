@@ -3,4 +3,5 @@
 	<string name="NotInternet">Отсутствует подключение к интернету!</string>
 	<string name="dialog_title">Выберите раздел</string>
 	<string name="footer_loading">загрузка…</string>
+	<string name="refresh">Обновить</string>
 </resources>
