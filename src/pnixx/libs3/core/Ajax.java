@@ -67,6 +67,14 @@ public class Ajax {
 		Log.d("Ajax post: " + url);
 		client.post(url, handler);
 	}
+	public void put(String url, RequestParams params, AsyncHttpResponseHandler handler) {
+		Log.d("Ajax put: " + url + "?" + params.toString());
+		client.put(url, params, handler);
+	}
+	public void put(String url, AsyncHttpResponseHandler handler) {
+		Log.d("Ajax put: " + url);
+		client.put(url, handler);
+	}
 	public void cancel() {
 		Log.w("Ajax cancel requests");
 		client.cancelRequests(context, true);
