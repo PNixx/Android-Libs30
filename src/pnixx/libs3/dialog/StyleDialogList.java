@@ -129,6 +129,11 @@ public class StyleDialogList extends Dialog {
 		dlg_title.setVisibility(View.VISIBLE);
 	}
 
+	//Получение объекта списка
+	public ListView getListView() {
+		return list;
+	}
+
 	private class ListAdapter extends ArrayAdapter<Row> {
 
 		public ListAdapter(ArrayList<Row> objects) {
