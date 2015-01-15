@@ -28,6 +28,7 @@ public abstract class SupportFragmentListAdapter<A extends FragmentActivity, Row
 	protected View progress;
 	protected View footer_loader;
 	protected int page = 1;
+	protected View refresh;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -37,9 +38,18 @@ public abstract class SupportFragmentListAdapter<A extends FragmentActivity, Row
 		//Получаем объекты
 		list = (ListView) view.findViewById(R.id.list);
 		progress = view.findViewById(R.id.progress);
+		refresh = view.findViewById(R.id.refresh);
 
 		//Биндим клик
 		list.setOnItemClickListener(this);
+		if( refresh != null ) {
+			refresh.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					OnRefreshListener();
+				}
+			});
+		}
 
 		//Устанавливаем параметры для списка
 		list.setDividerHeight(0);
@@ -137,4 +147,19 @@ public abstract class SupportFragmentListAdapter<A extends FragmentActivity, Row
 			});
 		}
 	}
+
+	protected void showRefreshButton() {
+		if( refresh != null ) {
+			refresh.setVisibility(View.VISIBLE);
+		}
+	}
+
+	protected void hideRefreshButton() {
+		if( refresh != null ) {
+			refresh.setVisibility(View.GONE);
+		}
+	}
+
+	//Листенер на обновление
+	protected void OnRefreshListener() {}
 }

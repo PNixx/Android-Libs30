@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
 	<!--Notification-->
 	<style name="NotificationText">
 		<item name="android:textColor">?android:attr/textColorPrimary</item>
@@ -9,6 +10,14 @@
 		<item name="android:textStyle">bold</item>
 	</style>
 
+	<style name="fill_parent">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">fill_parent</item>
+	</style>
+	<style name="fill_width">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
 	<style name="wrap_content">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -66,4 +75,26 @@
 		<item name="android:visibility">gone</item>
 	</style>
 
+	<!--Drawer-->
+	<style name="Drawer" parent="android:Widget.ListView">
+		<item name="android:id">@id/left_drawer</item>
+		<item name="android:layout_width">260dp</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:layout_gravity">start</item>
+		<item name="android:dividerHeight">0dp</item>
+		<item name="android:divider">@null</item>
+		<item name="android:background">@drawable/bg_drawer_row_default</item>
+		<item name="android:choiceMode">singleChoice</item>
+	</style>
+	<style name="Drawer.Row">
+		<item name="android:id">@android:id/text1</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:background">@drawable/bg_drawer_row</item>
+		<item name="android:padding">10dp</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:textColor">@color/Drawer.List.Item.TextColor</item>
+	</style>
+	<color name="Drawer.List.Item.TextColor">#444A54</color>
 </resources>

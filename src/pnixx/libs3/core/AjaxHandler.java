@@ -1,8 +1,8 @@
 package pnixx.libs3.core;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import org.apache.http.Header;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -14,6 +14,14 @@ public class AjaxHandler extends JsonHttpResponseHandler {
 
 	private static String TAG = "AjaxHandler";
 
+	public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+		Log.v(TAG + " onSuccess status: " + statusCode);
+		for(int i = 0; i < headers.length; i++) {
+			Log.v("header: " + headers[i].toString());
+		}
+		onSuccess(response);
+	}
+
 	public void onSuccess(JSONObject response) {
 		Log.v(TAG + " onSuccess JSONObject: " + response);
 	}
@@ -22,6 +30,14 @@ public class AjaxHandler extends JsonHttpResponseHandler {
 	}
 	public void onSuccess(String response) {
 		Log.v(TAG + " onSuccess String: " + response);
+	}
+
+	public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+		Log.v(TAG + " onFailure status: " + statusCode);
+		for(int i = 0; i < headers.length; i++) {
+			Log.v("header: " + headers[i].toString());
+		}
+		onFailure(throwable, responseString);
 	}
 
 	public void onFailure(Throwable e, JSONObject errorResponse) {
@@ -40,14 +56,4 @@ public class AjaxHandler extends JsonHttpResponseHandler {
 	public void onError(String r) {
 
 	}
-
-	@Override
-	protected Object parseResponse(String message) throws JSONException {
-		if( message.contains("Error message") ) {
-			Log.v(TAG + " parseResponse String:\n" + message);
-		}
-		return super.parseResponse(message);
-	}
-
-
 }
