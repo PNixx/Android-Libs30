@@ -337,6 +337,29 @@ public class Cache {
 		}
 	}
 
+	/**
+	 * Загрузка ресурка из асетов
+	 * @param image_path - путь до изображения
+	 * @param imageView - ссылка на объект изображения
+	 * @param width - ширина
+	 * @param height - высота
+	 */
+	public void loadAsset(String image_path, ImageCacheView imageView, int width, int height) {
+
+		//Ключь доступа в кеше
+		String key = "asset_" + image_path + "_" + width + "_" + height;
+		imageView.url = key;
+		imageView.is_loaded = false;
+
+		//Пробуем найти в кеше
+		if( getBitmap(key) != null ) {
+			imageView.setImageBitmap(getBitmap(key));
+			imageView.is_loaded = true;
+		} else {
+			new BitmapDecodeAssetAsync(imageView, width, height).execute(image_path);
+		}
+	}
+
 	//Устанавливаем стандартный пустой bitmap
 	public void setDefaultBitmap(ImageView imageView, int w, int h) {
 		Bitmap bitmap = getBitmap("default_bitmap");
