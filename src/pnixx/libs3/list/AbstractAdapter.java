@@ -70,7 +70,7 @@ public abstract class AbstractAdapter<Row, Holder extends AbstractHolder<Row>> e
 		object = getItem(position);
 
 		//Заполняем данными
-		holder.setRow(context, object, scrolling.isScrolling());
+		holder.setRow(context, object, scrolling != null && scrolling.isScrolling());
 
 		//Возвращаем вьюху
 		return row;

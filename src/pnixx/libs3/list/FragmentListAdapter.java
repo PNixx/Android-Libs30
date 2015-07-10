@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import pnixx.libs3.R;
 
@@ -28,6 +29,7 @@ public abstract class FragmentListAdapter<A extends Activity, Row> extends Fragm
 	protected View progress;
 	protected View footer_loader;
 	protected int page = 1;
+	private Button refresh;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -37,9 +39,18 @@ public abstract class FragmentListAdapter<A extends Activity, Row> extends Fragm
 		//Получаем объекты
 		list = (ListView) view.findViewById(R.id.list);
 		progress = view.findViewById(R.id.progress);
+		refresh = (Button) view.findViewById(R.id.refresh);
 
 		//Биндим клик
 		list.setOnItemClickListener(this);
+		refresh.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				getPage();
+				refresh.setVisibility(View.GONE);
+				progress.setVisibility(View.VISIBLE);
+			}
+		});
 
 		//Устанавливаем параметры для списка
 		list.setDividerHeight(0);
@@ -118,5 +129,12 @@ public abstract class FragmentListAdapter<A extends Activity, Row> extends Fragm
 				}
 			});
 		}
+	}
+
+	//При ошибке
+	protected void onRequestError() {
+		setAdapter(null);
+		progressHide();
+		refresh.setVisibility(View.VISIBLE);
 	}
 }

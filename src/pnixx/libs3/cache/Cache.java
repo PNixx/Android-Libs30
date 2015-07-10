@@ -10,6 +10,8 @@ import android.util.LruCache;
 import android.widget.ImageView;
 import pnixx.libs3.core.WindowsParam;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -403,5 +405,35 @@ public class Cache {
 		Log.d(instance.TAG, "Remove key: " + key);
 		instance.mBitmapCache.remove(key);
 		instance.mDiskCache.removeFile(key);
+	}
+
+	/**
+	 * Получение изображения из асета
+	 *
+	 * @param context    Context
+	 * @param url        String
+	 * @param max_width  int
+	 * @param max_height int
+	 * @return Bitmap
+	 * @throws IOException
+	 */
+	public static Bitmap decodeSampledBitmapFromAsset(Context context, String url, int max_width, int max_height) throws IOException {
+
+		//Получаем файл
+		InputStream is = context.getAssets().open(url);
+
+		// First decode with inJustDecodeBounds=true to check dimensions
+		final BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+		BitmapFactory.decodeStream(is, null, options);
+		is.reset();
+
+		// Calculate inSampleSize
+		options.inSampleSize = Cache.calculateInSampleSize(options, max_width, max_height);
+
+		// Decode bitmap with inSampleSize set
+		options.inJustDecodeBounds = false;
+
+		return BitmapFactory.decodeStream(is, null, options);
 	}
 }

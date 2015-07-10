@@ -1,13 +1,11 @@
 package pnixx.libs3.cache;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 import pnixx.libs3.core.Log;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.ref.WeakReference;
 
 /**
@@ -37,14 +35,19 @@ public class BitmapDecodeAssetAsync extends AsyncTask<String, Void, Bitmap> {
 	protected Bitmap doInBackground(String... params) {
 		String url = params[0];
 
-		//Получаем ресурс
-		Bitmap bitmap = decodeSampledBitmapFromAsset(url);
+		try {
+			//Получаем ресурс
+			Bitmap bitmap = Cache.decodeSampledBitmapFromAsset(imageCacheViewReference.get().getContext(), url, width, height);
 
-		//Добавляем в память
-		Cache.addBitmap(key, bitmap);
+			//Добавляем в память
+			Cache.addBitmap(key, bitmap);
 
-		//Возвращаем
-		return bitmap;
+			//Возвращаем
+			return bitmap;
+		} catch( IOException e ) {
+			Log.e(e.getMessage(), e);
+		}
+		return null;
 	}
 
 	// Once complete, see if ImageView is still around and set bitmap.
@@ -67,34 +70,5 @@ public class BitmapDecodeAssetAsync extends AsyncTask<String, Void, Bitmap> {
 				imageView.setImageBitmap(bitmap);
 			}
 		}
-	}
-
-	/**
-	 * Получение изображения из асета
-	 *
-	 * @param url       String
-	 * @return Bitmap
-	 */
-	public Bitmap decodeSampledBitmapFromAsset(String url) {
-
-		try {
-			//Получаем файл
-			InputStream is = imageCacheViewReference.get().getContext().getAssets().open(url);
-
-			// First decode with inJustDecodeBounds=true to check dimensions
-			final BitmapFactory.Options options = new BitmapFactory.Options();
-			options.inJustDecodeBounds = true;
-			BitmapFactory.decodeStream(is, null, options);
-
-			// Calculate inSampleSize
-			options.inSampleSize = Cache.calculateInSampleSize(options, width, height);
-
-			// Decode bitmap with inSampleSize set
-			options.inJustDecodeBounds = false;
-			return BitmapFactory.decodeStream(is, null, options);
-		} catch( IOException e ) {
-			Log.e(e.getMessage(), e);
-		}
-		return null;
 	}
 }
