@@ -161,5 +161,15 @@ public abstract class SupportFragmentListAdapter<A extends FragmentActivity, Row
 	}
 
 	//Листенер на обновление
-	protected void OnRefreshListener() {}
+	protected void OnRefreshListener() {
+		hideRefreshButton();
+		progress.setVisibility(View.VISIBLE);
+	}
+
+	//При ошибке
+	protected void onRequestError() {
+		setAdapter(null);
+		progressHide();
+		showRefreshButton();
+	}
 }

@@ -32,6 +32,14 @@ public abstract class AbstractAdapter<Row, Holder extends AbstractHolder<Row>> e
 		}
 	}
 
+	public AbstractAdapter(Context context, int res, ArrayList<Row> objects) {
+		super(context, res, objects);
+		this.context = context;
+		this.res = res;
+		this.objects = objects;
+		instance = this;
+	}
+
 	public AbstractAdapter(Context context, int res, ArrayList<Row> objects, PageScrolling scrolling) {
 		super(context, res, objects);
 		this.context = context;
@@ -48,7 +56,6 @@ public abstract class AbstractAdapter<Row, Holder extends AbstractHolder<Row>> e
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-//		Log.d("position: " + position + ", onEndPage: " + onEndPage + ", size: " + objects.size());
 		if( position >= objects.size() - 1 && onEndPage != null ) {
 			onEndPage.run();
 			onEndPage = null;

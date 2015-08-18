@@ -29,6 +29,7 @@ public abstract class SupportFragmentPullListAdapter<A extends FragmentActivity,
 	protected View progress;
 	protected View footer_loader;
 	protected int page = 1;
+	protected View refresh;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -38,6 +39,15 @@ public abstract class SupportFragmentPullListAdapter<A extends FragmentActivity,
 		//Получаем объекты
 		list = (PullToRefreshListView) view.findViewById(R.id.list);
 		progress = view.findViewById(R.id.progress);
+		refresh = view.findViewById(R.id.refresh);
+		if( refresh != null ) {
+			refresh.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					OnRefreshListener();
+				}
+			});
+		}
 
 		//Биндим клик
 		getListView().setOnItemClickListener(this);
@@ -129,5 +139,32 @@ public abstract class SupportFragmentPullListAdapter<A extends FragmentActivity,
 				}
 			});
 		}
+	}
+
+	protected void showRefreshButton() {
+		if( refresh != null ) {
+			refresh.setVisibility(View.VISIBLE);
+		}
+	}
+
+	protected void hideRefreshButton() {
+		if( refresh != null ) {
+			refresh.setVisibility(View.GONE);
+		}
+	}
+
+	//Листенер на обновление
+	protected void OnRefreshListener() {
+		hideRefreshButton();
+		progress.setVisibility(View.VISIBLE);
+	}
+
+	//При ошибке
+	protected void onRequestError() {
+		list.onRefreshComplete();
+		list.setVisibility(View.GONE);
+		setAdapter(null);
+		progressHide();
+		showRefreshButton();
 	}
 }

@@ -4,4 +4,5 @@
 							style="@style/ListLayout">
 	<com.handmark.pulltorefresh.library.PullToRefreshListView style="@style/List" android:id="@id/list" />
 	<ProgressBar style="@style/wrap_content" android:layout_centerInParent="true" android:id="@id/progress" />
+	<Button style="@style/ButtonRefresh" android:id="@id/refresh" />
 </RelativeLayout>
